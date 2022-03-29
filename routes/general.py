@@ -1,8 +1,7 @@
 import flask
-
-
-import flask
 import urllib.parse
+
+from utils import markdown
 
 blueprint = flask.Blueprint("general", __name__, url_prefix="/")
 
@@ -23,6 +22,11 @@ def index():
     author_url = args.get("author_url", "")
     provider_name = args.get("provider_name", "")
     provider_url = args.get("provider_url", "")
+
+    title = markdown.parse(title)
+    description = markdown.parse(description)
+    author_name = markdown.parse(author_name)
+    provider_name = markdown.parse(provider_name)
 
     if colour.startswith("#"):
         colour = colour[1:]
