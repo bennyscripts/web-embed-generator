@@ -24,6 +24,9 @@ def index():
     provider_name = args.get("provider_name", "")
     provider_url = args.get("provider_url", "")
 
+    if colour.startswith("#"):
+        colour = colour[1:]
+
     oembed_params = {
         "title": title,
         "author_name": author_name,
