@@ -17,8 +17,8 @@ def index():
     description = args.get("description", "")
     url = args.get("url", "")
     colour = args.get("colour", "") or args.get("color", "") or "000000"
-    image = args.get("image", "")
-    video = args.get("video", "")
+    image = args.get("image", None)
+    video = args.get("video", None)
     author_name = args.get("author_name", "")
     author_url = args.get("author_url", "")
     provider_name = args.get("provider_name", "")

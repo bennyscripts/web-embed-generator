@@ -6,10 +6,17 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="{{ embed_title }}">
         <meta name="twitter:description" content="{{ embed_description }}">
-        <meta name="twitter:image" content="{{ embed_image }}">
-        <meta name="twitter:player" content="{{ embed_video }}">
-        <meta name="twitter:player:width" content="1280">
-        <meta name="twitter:player:height" content="720">
+
+        {% if embed_image %}
+            <meta name="twitter:image" content="{{ embed_image }}">
+        {% endif %}
+
+        {% if embed_video %}
+            <meta name="twitter:player" content="{{ embed_video }}">
+            <meta name="twitter:player:width" content="1280">
+            <meta name="twitter:player:height" content="720">
+        {% endif %}
+
         <meta name="og:url" content="{{ embed_url }}">
         <meta name="theme-color" content="#{{ embed_colour }}">
 
