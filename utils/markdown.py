@@ -38,14 +38,14 @@ def normal(text):
 
 def parse(text):
     bold_text = re.findall(r"\*\*(.*?)\*\*", text)
-    italic_text = re.findall(r"__(.*?)__", text)
+    italic_text = re.findall(r"*(.*?)*", text)
     bold_italic_text = re.findall(r"\*\*\*(.*?)\*\*\*", text)
 
     for bold_text_item in bold_text:
         text = text.replace("**" + bold_text_item + "**", bold(bold_text_item))
 
     for italic_text_item in italic_text:
-        text = text.replace("__" + italic_text_item + "__", italic(italic_text_item))
+        text = text.replace("*" + italic_text_item + "*", italic(italic_text_item))
 
     for bold_italic_text_item in bold_italic_text:
         text = text.replace("***" + bold_italic_text_item + "***", bold_italic(bold_italic_text_item))
