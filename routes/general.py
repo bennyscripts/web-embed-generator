@@ -32,7 +32,7 @@ def index():
     protocol = "https" if flask.request.is_secure else "http"
     base_url = "{}://{}".format(protocol, domain)
 
-    oembed_link = base_url + flask.url_for("oembed.generator") + "?" + urllib.parse.urlencode(oembed_params)
+    oembed_link = base_url + flask.url_for("oembed.generator") + "?" + urllib.parse.urlencode(oembed_params) + ".json"
 
     return flask.render_template(
         "embed.html",
