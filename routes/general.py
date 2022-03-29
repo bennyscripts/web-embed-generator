@@ -10,6 +10,8 @@ blueprint = flask.Blueprint("general", __name__, url_prefix="/")
 def index():
     args = flask.request.args
 
+    if len(args) == 0:
+        return flask.render_template("index.html")
     title = args.get("title", "")
     description = args.get("description", "")
     url = args.get("url", "")
