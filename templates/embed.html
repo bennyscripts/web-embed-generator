@@ -3,7 +3,14 @@
     <head>
         <title>embed generator</title>
 
-        <meta name="twitter:card" content="summary_large_image">
+        {% if embed_image %}
+            <meta name="twitter:card" content="summary_large_image">
+        {% endif %}
+
+        {% if embed_video %}
+            <meta name="twitter:card" content="player">
+        {% endif %}
+
         <meta name="twitter:title" content="{{ embed_title }}">
         <meta name="twitter:description" content="{{ embed_description }}">
 
