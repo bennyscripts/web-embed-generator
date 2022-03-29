@@ -1,12 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>Embed Generator</title>
+
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>embed generator</title>
+        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     </head>
     <body>
-        ui soon&trade;
+        <div class="container py-5">
+            <div class="p-5 bg-light rounded shadow-sm">
+                <div class="container">
+                    <h1 class="display-3">embed generator</h1>
+                    <p class="lead">generate a link for a discord embed</p>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-6 col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">basic customization</h5>
+                            <div class="mb-0 mt-3">
+                              <input type="text" id="embed-title" class="form-control mb-1" placeholder="title">
+                              <input type="text" id="embed-description" class="form-control mb-1" placeholder="description">
+                              <input type="text" id="embed-url" class="form-control mb-1" placeholder="url">
+                              <input type="text" id="embed-colour" class="form-control mb-1" placeholder="colour (hex code)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">advanced customization</h5>
+                            <div class="mb-0 mt-3">
+                              <input type="text" id="embed-image" class="form-control mb-1" placeholder="image">
+                              <input type="text" id="embed-video" class="form-control mb-1" placeholder="video">
+                              <input type="text" id="embed-author" class="form-control mb-1" placeholder="author">
+                              <input type="text" id="embed-author-url" class="form-control mb-1" placeholder="author url">
+                              <input type="text" id="embed-provider" class="form-control mb-1" placeholder="provider">
+                              <input type="text" id="embed-provider-url" class="form-control mb-1" placeholder="provider url">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 mt-3">
+                <button type="button" id="generate-btn" class="btn btn-primary" onclick="generateUrl()">generate</button>
+                <input type="text" id="generate-output" class="form-control mt-1" readonly>
+            </div>
+        </div>
+
+        <script>
+            let generateBtn = document.getElementById('generate-btn');
+            let generateOutput = document.getElementById('generate-output');
+
+            let embedTitle = document.getElementById('embed-title');
+            let embedDescription = document.getElementById('embed-description');
+            let embedUrl = document.getElementById('embed-url');
+            let embedColour = document.getElementById('embed-colour');
+            let embedImage = document.getElementById('embed-image');
+            let embedVideo = document.getElementById('embed-video');
+            let embedAuthor = document.getElementById('embed-author');
+            let embedAuthorUrl = document.getElementById('embed-author-url');
+            let embedProvider = document.getElementById('embed-provider');
+            let embedProviderUrl = document.getElementById('embed-provider-url');
+
+            function generateUrl() {
+                let params = {
+                    title: embedTitle.value,
+                    description: embedDescription.value,
+                    url: embedUrl.value,
+                    colour: embedColour.value,
+                    image: embedImage.value,
+                    video: embedVideo.value,
+                    author_name: embedAuthor.value,
+                    author_url: embedAuthorUrl.value,
+                    provider_name: embedProvider.value,
+                    provider_url: embedProviderUrl.value
+                }
+
+                let url = new URL(window.location.href);
+
+                for (let key in params) {
+                    if (params[key] !== '') {
+                        url.searchParams.set(key, params[key]);
+                    }
+                }
+
+                generateOutput.value = url;
+            }
+        </script>
     </body>
 </html>
