@@ -28,7 +28,11 @@ def index():
         "provider_url": provider_url
     }
 
-    oembed_link = flask.url_for("oembed.generator") + "?" + urllib.parse.urlencode(oembed_params)
+    domain = flask.request.headers.get("Host")
+    protocol = "https" if flask.request.is_secure else "http"
+    base_url = "{}://{}".format(protocol, domain)
+
+    oembed_link = base_url + flask.url_for("oembed.generator") + "?" + urllib.parse.urlencode(oembed_params)
 
     return flask.render_template(
         "embed.html",
