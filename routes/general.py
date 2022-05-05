@@ -1,12 +1,27 @@
 import flask
 import urllib.parse
 
+from utils import sqlite
+from utils import invis_url
 from utils import markdown
 
 blueprint = flask.Blueprint("general", __name__, url_prefix="/")
+database = sqlite.Database()
 
-@blueprint.route("/")
-def index():
+@blueprint.route("/<invis_url>")
+def index(invis_url):
+    print(invis_url)
+
+    url = database.get(invis_url)
+    print(url)
+
+    if not url:
+        flask.abort(404)
+
+    return flask.redirect(url[0])
+
+@blueprint.route("/e")
+def embed_viewer():
     args = flask.request.args
 
     if len(args) == 0:
